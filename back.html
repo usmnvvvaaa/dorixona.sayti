@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Antibiotiklar - MedPharm</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+</head>
+<body>
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+    <div class="container">
+        <a class="navbar-brand fw-bold" href="index.html">
+            <i class="fas fa-prescription-bottle-alt me-2"></i>MedPharm
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ms-auto align-items-center gap-2">
+                <li class="nav-item"><a class="nav-link btn btn-outline-light px-3" href="index.html">Bosh sahifa</a></li>
+                <li class="nav-item"><a class="nav-link btn btn-light text-primary px-3" href="back.html">Antibiotiklar</a></li>
+                <li class="nav-item"><a class="nav-link btn btn-outline-light px-3" href="front.html">Og'riq qoldiruvchi</a></li>
+                <li class="nav-item"><a class="nav-link btn btn-outline-light px-3" href="fullstack.html">Vitaminlar</a></li>
+                <li class="nav-item">
+                    <button class="btn btn-outline-light position-relative" onclick="openCartModal()">
+                        <i class="fas fa-shopping-cart"></i> Savat
+                        <span id="cartCount" class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">0</span>
+                    </button>
+                </li>
+            </ul>
+            <div id="authBtn" class="ms-3"></div>
+        </div>
+    </div>
+</nav>
+
+<div class="container mt-4">
+    <h2 class="text-primary mb-4"><i class="fas fa-capsules"></i> Antibiotik preparatlar</h2>
+    <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4" id="products-row"></div>
+</div>
+
+
+<div class="modal fade" id="cartModal" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header bg-primary text-white">
+                <h5 class="modal-title"><i class="fas fa-shopping-cart"></i> Savatcha</h5>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body" id="cartItemsContainer">
+                <p class="text-center text-muted">Savatcha bo'sh</p>
+            </div>
+            <div class="modal-footer">
+                <div class="w-100">
+                    <div class="d-flex justify-content-between mb-3">
+                        <strong>Jami:</strong>
+                        <strong id="cartTotalAmount">0 so'm</strong>
+                    </div>
+                    <button class="btn btn-success w-100" onclick="checkout()">Buyurtma berish</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="database.js"></script>
+<script src="navbar.js"></script>
+<script src="script.js"></script>
+<script>
+    document.addEventListener("DOMContentLoaded", () => {
+        if (typeof renderProductsByCategory === 'function') {
+            renderProductsByCategory('antibiotik');
+        }
+    });
+</script>
+</body>
+</html>
